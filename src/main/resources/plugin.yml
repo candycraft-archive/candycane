@@ -1,0 +1,14 @@
+author: pauhull
+name: CandyCane
+version: 1.0
+main: de.pauhull.candycane.CandyCane
+
+commands:
+  perks:
+  perk:
+  trash:
+  bodysee:
+  giveall:
+  ga:
+  vote:
+  alchemist:
