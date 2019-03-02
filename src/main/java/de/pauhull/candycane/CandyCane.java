@@ -6,6 +6,7 @@ import de.pauhull.candycane.inventory.NavigatorInventory;
 import de.pauhull.candycane.inventory.PerksInventory;
 import de.pauhull.candycane.inventory.RandInventory;
 import de.pauhull.candycane.listener.InventoryCloseListener;
+import de.pauhull.candycane.listener.JoinAndLeaveListener;
 import de.pauhull.candycane.listener.PerkListener;
 import de.pauhull.candycane.listener.WorldChangeListener;
 import de.pauhull.candycane.manager.PerkManager;
@@ -61,6 +62,7 @@ public class CandyCane extends JavaPlugin {
         new RandCommand(this);
         new InventoryCloseListener(this);
         new WorldChangeListener(this);
+        new JoinAndLeaveListener(this);
         new PerkListener(this);
         new BodySeeCommand(this);
         new GiveAllCommand(this);
