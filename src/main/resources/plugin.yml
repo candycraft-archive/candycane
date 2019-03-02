@@ -11,4 +11,6 @@ commands:
   giveall:
   ga:
   vote:
-  alchemist:
+  navigator:
+  nav:
+  rand:

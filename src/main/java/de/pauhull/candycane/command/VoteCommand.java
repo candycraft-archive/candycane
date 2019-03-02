@@ -23,7 +23,7 @@ public class VoteCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage(Messages.PREFIX + "§c/vote ist momentan nicht verfügbar.");
+        sender.sendMessage(Messages.PREFIX + "§4§lDas Vote-System wird derzeit überarbeitet!");
         return true;
     }
 }
