@@ -10,7 +10,7 @@ import de.pauhull.candycane.listener.JoinAndLeaveListener;
 import de.pauhull.candycane.listener.PerkListener;
 import de.pauhull.candycane.listener.WorldChangeListener;
 import de.pauhull.candycane.manager.PerkManager;
-import de.pauhull.scoreboard.NovusScoreboardManager;
+import de.pauhull.scoreboard.ScoreboardManager;
 import lombok.Getter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -40,7 +40,7 @@ public class CandyCane extends JavaPlugin {
     private RandInventory randInventory;
 
     @Getter
-    private NovusScoreboardManager scoreboardManager;
+    private ScoreboardManager scoreboardManager;
 
     @Getter
     private Economy economy;
@@ -53,7 +53,7 @@ public class CandyCane extends JavaPlugin {
         this.perksInventory = new PerksInventory(this);
         this.navigatorInventory = new NavigatorInventory(this);
         this.randInventory = new RandInventory(this);
-        this.scoreboardManager = new NovusScoreboardManager(this, CityScoreboard.class);
+        this.scoreboardManager = new ScoreboardManager(this, CityScoreboard.class);
 
         RegisteredServiceProvider<Economy> registeredServiceProvider =
                 this.getServer().getServicesManager().getRegistration(Economy.class);

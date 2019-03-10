@@ -7,10 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.Arrays;
-import java.util.Map;
 
 /**
  * Created by Paul
@@ -32,10 +28,7 @@ public class InventoryCloseListener implements Listener {
         Inventory inventory = event.getInventory();
         Player player = (Player) event.getPlayer();
 
-        if (inventory == null || inventory.getTitle() == null || !inventory.getTitle().equals("Alchemist")) {
-            return;
-        }
-
+        /*
         Arrays.asList(3, 5).forEach(i -> {
             if (inventory.getItem(i) != null) {
                 Map<Integer, ItemStack> overflow = player.getInventory().addItem(inventory.getItem(i));
@@ -43,7 +36,7 @@ public class InventoryCloseListener implements Listener {
                     player.getWorld().dropItem(player.getLocation(), drop);
                 }
             }
-        });
+        });*/
     }
 
 }

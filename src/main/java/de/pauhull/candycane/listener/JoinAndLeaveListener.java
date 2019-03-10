@@ -15,6 +15,7 @@ public class JoinAndLeaveListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         event.setJoinMessage(null);
+
     }
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {

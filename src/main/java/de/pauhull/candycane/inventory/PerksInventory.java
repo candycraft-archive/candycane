@@ -6,7 +6,6 @@ import de.pauhull.candycane.perk.Perk;
 import de.pauhull.candycane.util.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -59,7 +58,7 @@ public class PerksInventory implements Listener {
         placePerk(inventory, 24, Perk.FAST_BREAK, player);
         placePerk(inventory, 33, Perk.MOB_SPAWNER, player);
 
-        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+        //player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
         player.openInventory(inventory);
     }
 
@@ -101,7 +100,7 @@ public class PerksInventory implements Listener {
             return;
 
         if (!perk.hasPermission(player)) {
-            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BASS, 1, 1);
+            //player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BASS, 1, 1);
             player.sendMessage(Messages.PREFIX + "§aPerks kaufen: §e§lshop.candycraft.de");
             return;
         }
@@ -112,7 +111,7 @@ public class PerksInventory implements Listener {
             candyCane.getPerkManager().setEnabled(player.getUniqueId(), perk, true);
         }
         placePerk(inventory, event.getSlot() - 1, perk, player);
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+        //player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
     }
 
 }

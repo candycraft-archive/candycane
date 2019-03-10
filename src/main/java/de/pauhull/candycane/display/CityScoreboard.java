@@ -1,14 +1,15 @@
 package de.pauhull.candycane.display;
 
 import de.pauhull.candycane.CandyCane;
-import de.pauhull.scoreboard.NovusScoreboard;
+import de.pauhull.scoreboard.CustomScoreboard;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import ru.tehkode.permissions.PermissionGroup;
 
-public class CityScoreboard extends NovusScoreboard {
+public class CityScoreboard extends CustomScoreboard {
 
-    private NovusScore rank, coins;
+    private CustomScoreboard.DisplayScore rank, coins;
 
     public CityScoreboard(Player player) {
         super(player, player.getName(), "  §d§lCandyCraft  ");
@@ -19,20 +20,25 @@ public class CityScoreboard extends NovusScoreboard {
     public void show() {
 
 
-        new NovusScore( " §fshop.candycraft.de");
-        new NovusScore("§cShop:");
-        new NovusScore();
-        this.coins = new NovusScore("§d Lädt...");
-        new NovusScore("§cGeld:");
-        new NovusScore();
-        this.rank = new NovusScore("§b Lädt...");
-        new NovusScore("§cRang: ");
-        new NovusScore();
-        new NovusScore(" §fCandy§cCane");
-        new NovusScore("§cServer: ");
-        new NovusScore();
-
+        new DisplayScore( " §fshop.candycraft.de");
+        new DisplayScore("§cShop:");
+        new DisplayScore();
+        this.coins = new DisplayScore("§d Lädt...");
+        new DisplayScore("§cGeld:");
+        new DisplayScore();
+        this.rank = new DisplayScore("§b Lädt...");
+        new DisplayScore("§cRang: ");
+        new DisplayScore();
+        if (Bukkit.getServerName().equals("Gingerbread")) {
+            new DisplayScore(" §fGinger§cBread");
+            player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', getHighestPermissionGroup(player).getPrefix() + player.getName()));
+        }else {
+            new DisplayScore(" §fCandy§cCane");
+        }
+        new DisplayScore("§cServer: ");
+        new DisplayScore();
         super.show();
+
     }
 
     @Override

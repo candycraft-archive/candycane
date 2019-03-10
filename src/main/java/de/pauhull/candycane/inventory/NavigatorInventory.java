@@ -4,7 +4,6 @@ import de.pauhull.candycane.CandyCane;
 import de.pauhull.candycane.util.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,7 +44,7 @@ public class NavigatorInventory implements Listener {
         inventory.setItem(14, new ItemBuilder(Material.NETHERRACK).setDisplayName("§4§lNETHER").setLore("§7Klicke um dich zu teleportieren!").build());
         inventory.setItem(16, new ItemBuilder(Material.BOW).setDisplayName("§c§lARENA").setLore("§7Klicke um dich zu teleportieren!").build());
 
-        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+        //player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
         player.openInventory(inventory);
     }
 
@@ -75,7 +74,7 @@ public class NavigatorInventory implements Listener {
             ((Player)event.getWhoClicked()).performCommand("warp arena");
         }
 
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+        //player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
     }
 
 }

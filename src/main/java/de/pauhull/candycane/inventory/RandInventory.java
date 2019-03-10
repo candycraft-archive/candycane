@@ -5,6 +5,7 @@ import com.intellectualcrafters.plot.config.Configuration;
 import com.intellectualcrafters.plot.object.Plot;
 import com.intellectualcrafters.plot.object.PlotBlock;
 import de.pauhull.candycane.CandyCane;
+import de.pauhull.candycane.Messages;
 import de.pauhull.candycane.util.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -60,7 +61,7 @@ public class RandInventory implements Listener {
         inv.addItem(new ItemBuilder(Material.getMaterial(126), 1, (short)3).setDisplayName("§6Tropenholzstufe").build());
         inv.setItem(35, new ItemBuilder(Material.INK_SACK, 1).setDisplayName("§6Rand entfernen").build());
 
-        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+        //player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
         player.openInventory(inv);
     }
 
@@ -98,7 +99,7 @@ public class RandInventory implements Listener {
             player.sendMessage("§d§lCandyCraft §8| §cKeine Rechte!");
         }
 
-        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
+        //player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1, 1);
     }
 
     private boolean isOwner(Player player) {
@@ -116,22 +117,26 @@ public class RandInventory implements Listener {
         return plot.isOwner(player.getUniqueId());
     }
     private void setRand(Player p, String id, boolean msg) {
-        PlotAPI api = new PlotAPI();
-        Plot plot = api.getPlot(p.getLocation());
-        PlotBlock[] pb = Configuration.BLOCKLIST.parseString(id);
-        if (plot.getConnectedPlots().size() > 1) {
-            for (Plot plots : plot.getConnectedPlots()) {
-                api.getPlotManager(p.getWorld()).setComponent(plots.getArea(), plots.getId(), "border", pb);
-            }
-            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
-            if (msg) {
-                p.sendMessage("§d§lCandyCraft §8| §aDu hast den §eRand §adeines Grundstücks geändert.");
-            }
-        } else {
-            api.getPlotManager(p.getWorld()).setComponent(plot.getArea(), plot.getId(), "border", pb);
-            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
-            if (msg) {
-                p.sendMessage("§d§lCandyCraft §8| §aDu hast den §eRand §adeines Grundstücks geändert.");
+        if (Bukkit.getServerName().equals("Gingerbread")) {
+            p.sendMessage(Messages.PREFIX + "§c§lDer /rand Befehl ist in der 1.13 noch nicht vorhanden!");
+        }else {
+            PlotAPI api = new PlotAPI();
+            Plot plot = api.getPlot(p.getLocation());
+            PlotBlock[] pb = Configuration.BLOCKLIST.parseString(id);
+            if (plot.getConnectedPlots().size() > 1) {
+                for (Plot plots : plot.getConnectedPlots()) {
+                    api.getPlotManager(p.getWorld()).setComponent(plots.getArea(), plots.getId(), "border", pb);
+                }
+                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
+                if (msg) {
+                    p.sendMessage("§d§lCandyCraft §8| §aDu hast den §eRand §adeines Grundstücks geändert.");
+                }
+            } else {
+                api.getPlotManager(p.getWorld()).setComponent(plot.getArea(), plot.getId(), "border", pb);
+                //p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 0.0f);
+                if (msg) {
+                    p.sendMessage("§d§lCandyCraft §8| §aDu hast den §eRand §adeines Grundstücks geändert.");
+                }
             }
         }
 
