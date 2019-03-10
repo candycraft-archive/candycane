@@ -3,6 +3,8 @@ name: CandyCane
 version: 1.0
 main: de.pauhull.candycane.CandyCane
 
+softdepend: [Friends]
+
 commands:
   perks:
   perk:

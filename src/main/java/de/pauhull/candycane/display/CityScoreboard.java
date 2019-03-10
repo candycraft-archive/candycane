@@ -5,6 +5,7 @@ import de.pauhull.scoreboard.CustomScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 import ru.tehkode.permissions.PermissionGroup;
 
 public class CityScoreboard extends CustomScoreboard {
@@ -19,7 +20,6 @@ public class CityScoreboard extends CustomScoreboard {
     @Override
     public void show() {
 
-
         new DisplayScore( " §fshop.candycraft.de");
         new DisplayScore("§cShop:");
         new DisplayScore();
@@ -31,7 +31,6 @@ public class CityScoreboard extends CustomScoreboard {
         new DisplayScore();
         if (Bukkit.getServerName().equals("Gingerbread")) {
             new DisplayScore(" §fGinger§cBread");
-            player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', getHighestPermissionGroup(player).getPrefix() + player.getName()));
         }else {
             new DisplayScore(" §fCandy§cCane");
         }
@@ -56,6 +55,37 @@ public class CityScoreboard extends CustomScoreboard {
         }
     }
 
+    public void updateTeam(Player player) {
+        String prefix, suffix, rank;
+        if (player.getDisplayName().equals(player.getName())) {
+            PermissionGroup group = getHighestPermissionGroup(player);
+            rank = group.getRank() + "";
+            prefix = group.getPrefix();
+            suffix = group.getSuffix();
+        } else {
+            rank = "65";
+            prefix = "§7";
+            suffix = "§7";
+        }
+
+        String teamName = rank + player.getName();
+
+        if (teamName.length() > 16) {
+            teamName = teamName.substring(0, 16);
+        }
+
+        if (scoreboard.getTeam(teamName) != null) {
+            scoreboard.getTeam(teamName).unregister();
+        }
+
+        Team team = scoreboard.registerNewTeam(teamName);
+        team.setPrefix(ChatColor.translateAlternateColorCodes('&', prefix));
+        team.setSuffix(ChatColor.translateAlternateColorCodes('&', suffix));
+        team.setColor(getLastChatColor(ChatColor.translateAlternateColorCodes('&', prefix)));
+
+        team.addEntry(player.getName());
+    }
+
     private String getPlayerGroup(Player player) {
         PermissionGroup group = super.getHighestPermissionGroup(player);
         if (group != null) {
@@ -64,4 +94,14 @@ public class CityScoreboard extends CustomScoreboard {
             return "§4Nicht gefunden";
         }
     }
+
+    private ChatColor getLastChatColor(String s) {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i - 1) == '§') {
+                return ChatColor.getByChar(s.charAt(i));
+            }
+        }
+        return null;
+    }
+
 }
