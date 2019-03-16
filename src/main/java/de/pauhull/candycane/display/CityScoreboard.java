@@ -61,7 +61,12 @@ public class CityScoreboard extends CustomScoreboard {
             PermissionGroup group = getHighestPermissionGroup(player);
             rank = group.getRank() + "";
             prefix = group.getPrefix();
-            suffix = group.getSuffix();
+            if (CandyCane.afk.contains(player.getUniqueId().toString())) {
+                suffix = " &7[&4AFK&7]";
+            } else {
+                suffix = group.getSuffix();
+            }
+
         } else {
             rank = "65";
             prefix = "§7";

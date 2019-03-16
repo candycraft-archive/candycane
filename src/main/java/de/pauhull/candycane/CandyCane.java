@@ -16,6 +16,9 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Paul
  * on 18.02.2019
@@ -45,6 +48,8 @@ public class CandyCane extends JavaPlugin {
     @Getter
     private Economy economy;
 
+    public static List<String> afk = new ArrayList<>();
+
     @Override
     public void onEnable() {
         instance = this;
@@ -70,6 +75,7 @@ public class CandyCane extends JavaPlugin {
         new PerksCommand(this);
         new TrashCommand(this);
         new NavigatorCommand(this);
+        new AfkCommand(this);
 
     }
 
