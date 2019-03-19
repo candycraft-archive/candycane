@@ -13,7 +13,7 @@ public class WorldChangeListener implements Listener {
 
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent event) {
-        if (event.getPlayer().getLocation().getWorld().getName().equals("farmwelt")) {
+        if (event.getPlayer().getLocation().getWorld().getName().equalsIgnoreCase("farmwelt")) {
             if (event.getPlayer().getAllowFlight()) {
                 event.getPlayer().setAllowFlight(false);
             }
