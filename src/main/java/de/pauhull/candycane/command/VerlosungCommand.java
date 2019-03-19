@@ -27,7 +27,7 @@ public class VerlosungCommand implements CommandExecutor {
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
             if (player.hasPermission("rang.verlosung")) {
-                if (args.length == 1) {
+                if (args.length == 0) {
                     final int[] k = {-1, -1};
                     BukkitRunnable runnable = new BukkitRunnable() {
                         @Override
@@ -57,7 +57,7 @@ public class VerlosungCommand implements CommandExecutor {
                                 players.addAll(Bukkit.getOnlinePlayers());
                                 Player rndm = players.get(new Random().nextInt(players.size()));
                                 Bukkit.broadcastMessage(Messages.PREFIX + "§4"+ rndm.getName() + " §chat§a gewonnen");
-                                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "pex user " + rndm.getName() + " group set " + args[0]);
+                                //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "pex user " + rndm.getName() + " group set " + args[0]);
                             }
                             if (k[0] > 30) {
                                 Bukkit.getScheduler().cancelTask(k[1]);
@@ -67,8 +67,10 @@ public class VerlosungCommand implements CommandExecutor {
                     runnable.runTaskTimer(cane, 1, 20);
                     k[1] = runnable.getTaskId();
                 } else {
-                  player.sendMessage(Messages.PREFIX + "§c/verlosung <Rang>");
+                  player.sendMessage(Messages.PREFIX + "§c/verlosung");
                 }
+            }else {
+                player.sendMessage(Messages.PREFIX + Messages.NO_PERMISSIONS);
             }
         }
         return true;
