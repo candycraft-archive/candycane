@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class VerlosungCommand implements CommandExecutor {
@@ -53,8 +52,7 @@ public class VerlosungCommand implements CommandExecutor {
                                 Bukkit.broadcastMessage(Messages.PREFIX + "§cDie Ziehung startet in §e" + l + "§c Sekunden");
                             }
                             if (k[0] == 30) {
-                                List<Player> players = new ArrayList<>();
-                                players.addAll(Bukkit.getOnlinePlayers());
+                                ArrayList<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
                                 Player rndm = players.get(new Random().nextInt(players.size()));
                                 Bukkit.broadcastMessage(Messages.PREFIX + "§4"+ rndm.getName() + " §chat§a gewonnen");
                                 //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "pex user " + rndm.getName() + " group set " + args[0]);
@@ -69,7 +67,7 @@ public class VerlosungCommand implements CommandExecutor {
                 } else {
                   player.sendMessage(Messages.PREFIX + "§c/verlosung");
                 }
-            }else {
+            } else {
                 player.sendMessage(Messages.PREFIX + Messages.NO_PERMISSIONS);
             }
         }
