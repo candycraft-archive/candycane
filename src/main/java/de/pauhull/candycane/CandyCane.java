@@ -77,6 +77,7 @@ public class CandyCane extends JavaPlugin {
         new NavigatorCommand(this);
         new AfkCommand(this);
         new VerlosungCommand(this);
+        new FlyCommand(this);
     }
 
     @Override

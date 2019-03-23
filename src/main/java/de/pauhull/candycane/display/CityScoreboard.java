@@ -57,20 +57,13 @@ public class CityScoreboard extends CustomScoreboard {
 
     public void updateTeam(Player player) {
         String prefix, suffix, rank;
-        if (player.getDisplayName().equals(player.getName())) {
-            PermissionGroup group = getHighestPermissionGroup(player);
-            rank = group.getRank() + "";
-            prefix = group.getPrefix();
-            if (CandyCane.afk.contains(player.getUniqueId().toString())) {
-                suffix = " &7[&4AFK&7]";
-            } else {
-                suffix = group.getSuffix();
-            }
-
+        PermissionGroup group = getHighestPermissionGroup(player);
+        rank = group.getRank() + "";
+        prefix = group.getPrefix();
+        if (CandyCane.afk.contains(player.getUniqueId().toString())) {
+            suffix = " &7[&4AFK&7]";
         } else {
-            rank = "65";
-            prefix = "§7";
-            suffix = "§7";
+            suffix = group.getSuffix();
         }
 
         String teamName = rank + player.getName();
