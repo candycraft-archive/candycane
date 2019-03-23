@@ -39,7 +39,7 @@ public class GiveAllCommand implements CommandExecutor {
             return true;
         }
 
-        ItemStack stack = player.getItemInHand();
+        ItemStack stack = player.getInventory().getItemInMainHand();
 
         if (stack == null) {
             player.sendMessage(Messages.PREFIX + "§cDu hast kein Item in der Hand!");
