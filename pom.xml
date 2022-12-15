@@ -17,9 +17,26 @@
             <id>candycraft-repo</id>
             <url>https://repo.morx.me/repository/internal</url>
         </repository>
+        <repository>
+            <id>hazebyte-api</id>
+            <url>https://nexus.hazebyte.com/repo/maven-snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>com.hazebyte</groupId>
+            <artifactId>CrateReloadedAPI</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vexsoftware</groupId>
+            <artifactId>votifier</artifactId>
+            <version>1.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/votifier-1.9.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>de.pauhull</groupId>
             <artifactId>scoreboard-api</artifactId>

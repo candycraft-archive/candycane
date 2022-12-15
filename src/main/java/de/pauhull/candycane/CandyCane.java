@@ -5,14 +5,12 @@ import de.pauhull.candycane.display.CityScoreboard;
 import de.pauhull.candycane.inventory.NavigatorInventory;
 import de.pauhull.candycane.inventory.PerksInventory;
 import de.pauhull.candycane.inventory.RandInventory;
-import de.pauhull.candycane.listener.InventoryCloseListener;
-import de.pauhull.candycane.listener.JoinAndLeaveListener;
-import de.pauhull.candycane.listener.PerkListener;
-import de.pauhull.candycane.listener.WorldChangeListener;
+import de.pauhull.candycane.listener.*;
 import de.pauhull.candycane.manager.PerkManager;
 import de.pauhull.scoreboard.ScoreboardManager;
 import lombok.Getter;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -78,6 +76,10 @@ public class CandyCane extends JavaPlugin {
         new AfkCommand(this);
         new GiveawayCommand(this);
         new FlyCommand(this);
+
+        if (Bukkit.getPluginManager().getPlugin("Votifier") != null) {
+            new VotifierListener(this);
+        }
     }
 
     @Override
